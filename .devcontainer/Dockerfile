@@ -9,3 +9,9 @@ FROM mcr.microsoft.com/vscode/devcontainers/rust:0-${VARIANT}
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
 ENV CARGO_BUILD_TARGET_DIR=/tmp/target
+
+RUN rustup component add rust-analysis
+RUN rustup component add rust-src
+RUN rustup component add rls
+
+RUN cargo install cargo-edit
