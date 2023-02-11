@@ -61,6 +61,17 @@ fn main() {
 
     // mut --- mutable 可変 , defaultはimmutable(不変)のため変更したい場合はmutをつける。
 
+    // 画面クリア
+    println!("\x1b[2J\x1b[H\x1b[?25l");
+
+    /*
+    コード	効果
+    \x1b[H	カーソルを画面の一番左上へ移動する
+    \x1b[2J	画面をクリアする
+    \x1b[?25h	カーソルを表示にする
+    \x1b[?25l	カーソルを非表示にする
+    */
+
     // 5マス落下
     for _ in 0..5 {
         // 描画用フィールドの生成
@@ -76,8 +87,8 @@ fn main() {
 
         // posのy座標を更新
         pos.y += 1;
-
         // フィールドを描画
+        println!("\x1b[H");
         for y in 0..21 {
             for x in 0..13 {
                 if field_buf[y][x] == 1 {
@@ -89,4 +100,7 @@ fn main() {
             println!();
         }
     }
+
+    // カーソルを再表示
+    println!("\x1b[?25h");
 }
